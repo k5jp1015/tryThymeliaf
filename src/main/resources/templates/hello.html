@@ -8,6 +8,9 @@
     <script src="/webjars/jquery-ui/1.11.4/jquery-ui.min.js"></script>
   </head>
   <body>
+
+  	<p th:text="'Hello, ' + ${name} + '!'" />
+
     <dl th:each="hoge : ${hogeList}">
       <dt>id</dt>
       <dd th:text="${hoge.id}"></dd>
@@ -15,9 +18,15 @@
       <dt>value</dt>
       <dd th:text="${hoge.value}"></dd>
     </dl>
-    <button>ボタンボタン</button>
+    <form>
+    	<button>GO to Input</button>
+    </form>
 	<script>
 	$( "button" ).button();
+	$( "button" ).click(function(){
+		 alert('hello world!');
+		window.location = "/input";
+	});
 	</script>
 
   </body>
