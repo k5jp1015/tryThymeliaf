@@ -5,12 +5,12 @@
     <title>Hello Thymeleaf</title>
   </head>
   <body>
-    <dl>
+    <dl th:each="hoge : ${hogeList}">
       <dt>id</dt>
-      <dd th:text="${myData.id}"></dd>
+      <dd th:text="${hoge.id}"></dd>
 
       <dt>value</dt>
-      <dd th:text="${myData.value}"></dd>
+      <dd th:text="${hoge.value}"></dd>
     </dl>
   </body>
 </html>
