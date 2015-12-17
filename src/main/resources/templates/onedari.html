@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>必要なもの</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Personデータ表示:</p>
+
+    <p th:text="${results}" />
+
+<hr />
+
+<p>Personデータ追加:</p>
+
+<form method="POST" action="/onedariPost">
+  名前: <input type="text" name="name" /><br />
+  必要なもの: <input type="text" name="desired" /><br />
+  理由: <input type="text" name="reason" /><br />
+  <input type="submit" value="登録" />
+</form>
+
+</body>
+</html>

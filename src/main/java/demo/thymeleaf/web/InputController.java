@@ -49,4 +49,30 @@ public class InputController {
         return "person-view";
     }
 
+
+    @Autowired
+	//↓ここがキモ
+    DesiredRepository repositoryDesired;
+
+    @RequestMapping("/oridari")
+    public String onedariList(Model model) {
+      Iterable<DesiredThing> list = repositoryDesired.findAll();
+      model.addAttribute("resultsDesired", list);
+      return "OK";
+    }
+
+    @RequestMapping(value="/onedariPost", method=RequestMethod.POST)
+    public String desiredSearch(Model model,
+      @RequestParam("name") String name,
+      @RequestParam("desired") String desired,
+      @RequestParam("reason") String reason,
+      @RequestParam("description") String description) {
+
+        DesiredThing Desired = new DesiredThing(name, desired, reason);
+        repositoryDesired.saveAndFlush(Desired);
+        Iterable<Person> list = repository.findAll();
+        model.addAttribute("resultsDesired", list);
+        return "OK";
+    }
+
 }
