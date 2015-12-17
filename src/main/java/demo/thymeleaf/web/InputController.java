@@ -17,6 +17,12 @@ public class InputController {
 	    return "input"; // input form
 	}
 
+
+	@RequestMapping("/jikken")
+	public String jikken() {
+	    return "input"; // input form
+	}
+
 	// inputフォームから受け取ってhello.htmlへ
 	@RequestMapping("/send")
 	public String send(Model model, @RequestParam("name") String name) {
@@ -47,6 +53,31 @@ public class InputController {
         Iterable<Person> list = repository.findAll();
         model.addAttribute("results", list);
         return "person-view";
+    }
+
+
+    @Autowired
+	//↓ここがキモ
+    DesiredRepository repositoryDesired;
+
+    @RequestMapping("/onedari")
+    public String onedariList(Model model) {
+      Iterable<DesiredThing> list = repositoryDesired.findAll();
+      model.addAttribute("resultsDesired", list);
+      return "onedari";
+    }
+
+    @RequestMapping(value="/onedariPost", method=RequestMethod.POST)
+    public String desiredSearch(Model model,
+      @RequestParam("name") String name,
+      @RequestParam("desired") String desired,
+      @RequestParam("reason") String reason) {
+
+        DesiredThing Desired = new DesiredThing(name, desired, reason);
+        repositoryDesired.saveAndFlush(Desired);
+        Iterable<DesiredThing> list = repositoryDesired.findAll();
+        model.addAttribute("resultsDesired", list);
+        return "onedari";
     }
 
 }
