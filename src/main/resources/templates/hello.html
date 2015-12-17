@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello Thymeleaf</title>
+    <link rel="stylesheet" href="/webjars/jquery-ui/1.11.4/jquery-ui.min.css" />
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/jquery-ui/1.11.4/jquery-ui.min.js"></script>
   </head>
   <body>
     <dl th:each="hoge : ${hogeList}">
@@ -12,5 +15,10 @@
       <dt>value</dt>
       <dd th:text="${hoge.value}"></dd>
     </dl>
+    <button>ボタンボタン</button>
+	<script>
+	$( "button" ).button();
+	</script>
+
   </body>
 </html>
