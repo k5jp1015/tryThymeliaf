@@ -60,6 +60,7 @@ public class InputController {
 	//↓ここがキモ
     DesiredRepository repositoryDesired;
 
+
     @RequestMapping("/onedari")
     public String onedariList(Model model) {
       Iterable<DesiredThing> list = repositoryDesired.findAll();
@@ -71,6 +72,7 @@ public class InputController {
     public String desiredSearch(Model model,
       @RequestParam("name") String name,
       @RequestParam("desired") String desired,
+
       @RequestParam("reason") String reason) {
 
         DesiredThing Desired = new DesiredThing(name, desired, reason);
@@ -78,6 +80,7 @@ public class InputController {
         Iterable<DesiredThing> list = repositoryDesired.findAll();
         model.addAttribute("resultsDesired", list);
         return "onedari";
+
     }
 
 }

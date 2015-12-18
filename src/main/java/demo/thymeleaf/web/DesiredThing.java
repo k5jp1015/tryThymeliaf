@@ -31,8 +31,8 @@ public class DesiredThing {
 
         // for debug
         public String toString() {
-        	String stm = reason.substring(0,2);
-          return "DesiredThing[ 名前：" + name + ",欲しいもの：" + disired + ",理由：" + reason + "一文字目:" + stm + "]";
+          return "DesiredThing[ 名前：" + name + ",欲しいもの：" + disired + ",理由：" + reason + "]";
+
         }
 }
 
