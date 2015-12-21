@@ -76,11 +76,33 @@ public class InputController {
       @RequestParam("reason") String reason) {
 
         DesiredThing Desired = new DesiredThing(name, desired, reason);
+//      ↓指定されたEntity(ここではDesired)に対する永続操作をEntitiyManagerに蓄積した後に、
+//        蓄積された（INSERT/UPDATE/DELETE）などをDB（永続層）に反映するためのメソッド
         repositoryDesired.saveAndFlush(Desired);
         Iterable<DesiredThing> list = repositoryDesired.findAll();
         model.addAttribute("resultsDesired", list);
         return "onedari";
 
+    }
+
+    @RequestMapping(value = "/find",method = RequestMethod.POST)
+    public String find(Model model,@RequestParam("id") Integer Id){
+    	DesiredThing list = null;
+    	list = repositoryDesired.findById(Id);
+
+    	model.addAttribute("resultsDesiredFind",list);
+    	return "onedari";
+    }
+
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public String update(Model model,@RequestParam("id") Integer Id,@RequestParam("reason") String Rea){
+    	DesiredThing list = null;
+    	list = repositoryDesired.findById(Id);
+    	list.setReason(Rea);
+    	 repositoryDesired.saveAndFlush(list);
+
+    	model.addAttribute("resultsDesiredUpdate",list);
+    	return "onedari";
     }
 
 }

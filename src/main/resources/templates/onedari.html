@@ -21,5 +21,26 @@
   <input type="submit" value="登録" />
 </form>
 
+<hr />
+
+	<p th:text="${resultsDesiredFind}" />
+
+<p>idによる検索</p>
+<form method ="POST" action = "/find">
+	<span>id:</span><input type="text" name = "id" /><br />
+	<input type="submit" value="検索" />
+</form>
+
+<hr />
+
+	<p th:text="${resultsDesiredUpdate}" />
+
+<p>idによる検索</p>
+<form method ="POST" action = "/update">
+	<span>id:</span><input type="text" name = "id" /><br />
+	<span>理由:</span><input type="text" name = "reason" /><br />
+	<input type="submit" value="変更" />
+</form>
+
 </body>
 </html>

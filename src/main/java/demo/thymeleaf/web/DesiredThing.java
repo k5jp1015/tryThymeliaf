@@ -31,8 +31,13 @@ public class DesiredThing {
 
         // for debug
         public String toString() {
-          return "DesiredThing[ 名前：" + name + ",欲しいもの：" + disired + ",理由：" + reason + "]";
+          return "DesiredThing[ id:"+ id +"名前：" + name + ",欲しいもの：" + disired + ",理由：" + reason + "]";
 
+        }
+
+        //reasonのSetterメソッド
+        public void setReason(String rea){
+        	this.reason = rea;
         }
 }
 
