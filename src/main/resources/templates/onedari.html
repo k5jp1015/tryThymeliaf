@@ -42,5 +42,15 @@
 	<input type="submit" value="変更" />
 </form>
 
+<hr />
+
+	<p th:text="${resultsDesiredDelete}" />
+
+<p>idによる検索</p>
+<form method ="POST" action = "/delete">
+	<span>id:</span><input type="text" name = "id" /><br />
+	<input type="submit" value="削除" />
+</form>
+
 </body>
 </html>

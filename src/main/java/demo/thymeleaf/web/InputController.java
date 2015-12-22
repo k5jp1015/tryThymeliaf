@@ -88,20 +88,33 @@ public class InputController {
     @RequestMapping(value = "/find",method = RequestMethod.POST)
     public String find(Model model,@RequestParam("id") Integer Id){
     	DesiredThing list = null;
+    	//findByメソッド・シグネチャ
     	list = repositoryDesired.findById(Id);
 
     	model.addAttribute("resultsDesiredFind",list);
     	return "onedari";
     }
 
+    //更新処理
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public String update(Model model,@RequestParam("id") Integer Id,@RequestParam("reason") String Rea){
     	DesiredThing list = null;
+    	//findByメソッド・シグネチャ
     	list = repositoryDesired.findById(Id);
     	list.setReason(Rea);
     	 repositoryDesired.saveAndFlush(list);
 
     	model.addAttribute("resultsDesiredUpdate",list);
+    	return "onedari";
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public String delete(Model model,@RequestParam("id") Integer Id){
+    	DesiredThing DT = null;
+    	DT = repositoryDesired.findById(Id);
+    	repositoryDesired.delete(DT);
+
+    	model.addAttribute("resultsDesiredDelete","ID:"+Id+"は削除されました");
     	return "onedari";
     }
 
