@@ -1,0 +1,53 @@
+■Windows Server 2003を用いた仮想環境構築メモ
+	1.ディスクからWindows Server 2003をセットアップ
+		・Boot Menuから直接ディスクを読み込む必要があった
+		・ディスクの読み込みができない場合は外部ディスクから読み込む必要があるが、
+		外部ディスクの読み取りをOSよりも優先しなければいけないため、BIOSをいじる必要がある（らしい）
+		
+	2.各種ドライバの設定
+		・コンピュータの管理>デバイスマネージャを用いてデバイスの確認。
+		ものによっては各種ハードウェアのHPから対応するドライバを落とす必要がある
+		・今回の例
+			OS：Windows Server 2003
+			ハードウェア：HP製 ProLiant ML110 G4(システム情報から確認)
+			ドライバインストールHP：http://h20566.www2.hpe.com/hpsc/swd/public/readIndex?sp4ts.oid=3186421&swLangOid=25&swEnvOid=1005
+			
+	3．Windows Updateの実施
+		Windows Updateをインストール（？）して、更新プログラムを取得
+		IEのセキュリティ設定などももろもろ変えてあげる
+		これで初めてネットを使える
+		
+	4.VirtualBoxとVagrantのインストールと設定
+	・VirtualBoxとVagrant自体のインストールは特に記述すべきことはない
+	・VagrantでcentOSのボックスを取得。Vagrant upコマンドで立ち上げ
+	・【重要】sshが認証されない。公開鍵が生成されていないためだと思われる。
+	・【参考URL】http://qiita.com/yoh-nak/items/95c735764f38c37ea16a
+	
+	5.CentOS内での設定
+	・Vagrantユーザからrootユーザに切り替えるにはコマンド「sudo su -」を用いる
+	・rootユーザでapacheのインストールと起動を、iptablesの停止をする
+	・【Todo】↑iptablesに関しては全部丸々停止すると色々怖いので、のちに特定ポートを開けるように設定をする
+	　【参考URL】http://d.hatena.ne.jp/Loups-garous/20120917/1347900472
+	　			http://www.webcyou.com/?p=4632
+	・Windows Server 2003上で[http://127.0.0.1:8080/]でApacheが起動していることを確認
+	
+	6．外部PC（ホストでないPC）からゲストOSのWEBサーバにHTTP通信する方法
+		・ホストPCのVirtualBoxの設定を以下のようにする
+			・VirtualBoxの仮想マシンの設定→ネットワーク
+			・割り当てがNATになっているアダプターを選択
+			・ポートフォワーディングを押下し、以下のように設定をする
+				名前：適当（今回は「NotOnlyHost」）
+				プロトコル：TCP
+				ホストIP：空
+				ホストポート：3000（ホストOSにポート30が使われていないこと前提）
+				ゲストIP：空
+				ゲストポート：80（ゲストOS側のHTTP通信のデフォルトポート）
+			・ホストOS（Windows Server 2003）のIPアドレスが「http://192.168.1.20/」なので、
+			ブラウザで「http://192.168.1.20:3000/」を指定し、Apacheの起動画面になっていることを確認する
+		
+		
+		
+	7.ゲストOS同士の接続
+		【超重要】http://hao03.github.io/blog/2014/07/16/vagrant-network/
+		ネットワークを反映するためにはreloadする必要あり？
+		→Vagrant up時にsshできなくてもほっとく

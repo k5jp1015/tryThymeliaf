@@ -1,0 +1,29 @@
+■Building a RESTful Web Service
+	http://spring.io/guides/gs/rest-service/
+	
+	Spring Bootを用いたRESTful web serviceの作成
+	
+	・@RestController
+		@Controllerと@ResponseBodyの両方を包括しているアノテーション
+		@Controller：アノテーションを付けることで、DIコンテナにより、コントローラクラスが自動で読み込まれる。
+		@RestController:JsonやXML等を返すWebAPI用のコントローラで使用する。こちらはViewに遷移しないのでメソッドの戻り値はレスポンスのコンテンツになる。
+		この辺の参考→http://qiita.com/tag1216/items/3680b92cf96eb5a170f0
+		
+	・クエリ文字列
+		WebブラウザなどがWebサーバに送信するデータをURLの末尾に特定の形式で表記したもの。
+		例：http://example.com/foo/var.php?name1=value1&name2=value2 
+		
+		
+	・クライアント側経由でサーバーサイドに値を渡すより、直接的にサーバサイドからの呼び出しが可能となる
+	
+	
+	
+	↓上記の例に3つ目の項目を継ぎ足した
+	http://localhost:8080/greeting?name=User&hantei=false
+	hanteiに対して「true or false」で返す値が異なる
+	
+	
+■Enabling Cross Origin Requests for a RESTful Web Service
+
+	・Spring BootではRESTful web serviceの構築アプローチとして、コントローラーでHTTPリクエストを
+	扱うことを主としている

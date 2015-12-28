@@ -1,0 +1,25 @@
+■Spring Boot 導入手順
+ ●前提
+ 	・spring boot公式HPのクイックスタートを試す（http://projects.spring.io/spring-boot/#quick-start）←以下、公式HP
+ 	・環境面は以下の通り
+ 	【IDE】Eclipse Kepler
+ 	【Jave】1.7
+ 	【ビルドツール】Maven
+ ●手順
+ 	1.「ファイル」→「新規」→「その他」→「Maven」→「Mavenプロジェクト」でプロジェクト作成
+ 	2.プロジェクト生成の設定は以下の通り
+ 		【プロジェクト名およびロケーションの選択】：任意のロケーションを設定
+ 		【アーキタイプの選択】：archtypeArticatIdは「maven-archetype-quickstart」
+ 		【アーティファクトのグループ id を入力してください。】：グループID、アーティファクトIDそれぞれ任意
+ 	3.pom.xmlの編集
+ 		・生成されたプロジェクトのpom.xmlに公式HPのMAVENの記述を追加。
+ 		・↑タブの親子関係等に注意する
+ 		・今回、Jave1.7を用いているので、<properties>内に「<java.version>1.7</java.version>」の記述を追加する
+ 		・プロジェクトを右クリックし、「Maven」→「プロジェクトの更新」を選択する
+ 	4.サンプルソース設定
+ 		パッケージを右クリックし、「新規」→「クラス」を選択。任意の名前でクラスを作成
+ 		公式HPの「hello/SampleController.java」を参考にサンプルソースを作成
+ 		↑ただコピペして、エラーが出るような頭の悪いことはしないように!!
+ 	5.プログラムの実行
+ 		作成したクラス(~.java)を右クリックし、「実行」→「Javaアプリケーション」を選択
+ 		ブラウザで「http://localhost:8080/」にリンクし、「Hello World!」が表示されていることを確認する

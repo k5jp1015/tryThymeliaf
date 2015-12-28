@@ -1,0 +1,97 @@
+■JUnitにおけるメモ
+
+	バージョン：4.11
+	↓バージョン確認用メソッド
+	public static void setUpBeforeClass() throws Exception {
+		junit.runner.Version.main(null);
+	}
+	
+	
+	
+
+	以下、テストソース例
+	////////////////////////////////////////////////////////////////////////////////////
+	import org.junit.Test;
+	import etatic org.junit.Assert.*;
+	
+	public class AccountTest{
+		//実際にAccountをnewして使ってみるテスト
+		@Test public void instantiate(){
+			Account a = new Account("マガミ",30000);
+			//いかがJUnitにおけるテストメソッド例
+			assertEquals("マガミ",a.owner);
+			assertEquals("30000",a.balance);
+			
+		}
+	}
+	////////////////////////////////////////////////////////////////////////////////////
+	
+	○基本的なアノテーション一覧
+		@BeforeClass
+			テストクラスのstaticイニシャライザの後に呼ばれる
+		@Before
+			テストクラスのコンストラクタの後に呼ばれる
+		@Test
+			テストメソッドに付与
+		@After
+			テストメソッド実行後に実行したいメソッドに付与
+		@AfterClass
+			テストクラス実行後に実行したいメソッドに付与
+	
+	
+	http://javaworld.helpfulness.jp/page-71/
+	
+	
+	
+	○assertThatについて
+		■「assertThat」はJunit4.4で追加された新しいアサーションメソッド
+		■今まででは「assertEquals("期待値", "実際の値");」というようにやっていた
+			↑これは期待値と実際の値の値が同じであることを期待することがassertEqualsを使った時点で決定します。
+		■一方、assertThatを用いて同じ検証をすると「assertThat("実際の値", is("期待値"));」という書き方ができる
+		■assertThatで利用するMatcherには本当に色々種類があるので、割愛。おそらく、「テストソース自体のロジックが間違っている」という現象が起こりやすいのはこのあたり
+		■参考URL：「http://javaworld.helpfulness.jp/post-36/」「http://qiita.com/opengl-8080/items/e57dab6e1fa5940850a3」
+		
+		
+	○eclipseについて
+		失敗：指定した値と実際の値が違う場合
+		エラー：例外処理で落ちた場合（たぶん）
+		
+		
+○Spring bootでweb ユニットテスト編
+	参考URL：http://www.slideshare.net/navekazu/spring-bootweb-54261077
+
+	ユニットテストの適用分野
+		運用に向く分野
+			・共通処理プログラム
+			・パターンが多い処理プログラム
+			・ビジネスロジック
+			・データ更新/取得処理プログラム
+			・リリースを頻繁に繰り返すプロダクト
+			
+		運用に向かない分野
+			・画面の見た目
+			・画面の情報を更新する処理
+			・一度リリースしたら終了するプロダクト
+
+	Springでのユニットテスト
+		↓「どこ」で「なに」をテストするかがポイント
+		・Controller（画面制御）
+			・すべての入力項目に対して、すべてのパターンの入力値を与えた妥当性(バリデート)チェック
+			・画面遷移
+		・Service（ビジネスロジック）
+			・パターンを網羅したロジックのチェック
+		・Repository(データの入出力)
+			・データ取得の確認
+			・データ保存の確認
+	■spring-boot-starter-test を使えば「JUnit」,「Hamcrest」，「Mockito」がパッケージされている 
+	
+	
+	JUnitのソース自体の工数を下げる
+	↑テストコードを書くこと自体が大変
+	JUnitを使って楽に単体テストを行うようにするにはどうするべきか？
+	↑今はユニットテスト目的でやっているが、単体テストの工数を削減するためのアイデアがあれば欲しい
+	
+	
+	■ネット上でのテストに関する所感
+	ユニットテストしやすいメソッドは、シンプルで、状態を持たず、期待する結果が不定とならないメソッドです。
+	逆に言うと複雑なロジックはテストし難い？
