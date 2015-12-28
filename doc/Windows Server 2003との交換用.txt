@@ -1,0 +1,33 @@
+http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box
+
+y’zvagrant box add CentOS64_jikken http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box
+ª‚â‚Á‚Ï‚èŽg‚í‚È‚¢
+
+
+vagrant box add centos32 http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-i386-v20130731.box
+
+title:centos32
+
+
+C:\centos>vagrant ssh-config
+Host default
+  HostName 127.0.0.1
+  User vagrant
+  Port 2222
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile "C:/Documents and Settings/Administrator.AIM-TEST-SERVER/.vagrant.d/insecure_private_key"
+  IdentitiesOnly yes
+  LogLevel FATAL
+  
+  EŒöŠJŒ®‚Ì¶¬
+  ssh-keygen -yf C:/Documents and Settings/Administrator.AIM-TEST-SERVER/.vagrant.d/insecure_private_keyy > public_key
+
+
+
+A Vagrant environment or target machine is required to run this
+command. Run `vagrant init` to create a new Vagrant environment. Or,
+get an ID of a target machine from `vagrant global-status` to run
+this command on. A final option is to change to a directory with a
+Vagrantfile and to try again.

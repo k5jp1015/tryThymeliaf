@@ -1,0 +1,40 @@
+■新規開発環境標準化計画概要
+
+	OS：
+		Windows 7
+	デザインパターン：
+		MVCモデル
+	F/W:
+		Spring Boot
+		
+			画面管理(MVCのC)：
+				Spring MVC
+			テンプレートエンジン・画面の構成(MVCのV)：
+				Thymeleaf(テンプレートエンジン)、
+				HTML、CSS、各種JavaScriptライブラリ
+			DBとの接続層（MVCのM、O/Rマッパー）
+				Spring DATA JPA（現時点使っている）
+				その他候補としてはMy BatisやDomaなど（←いまいちどういったものかわかっていない）
+			その他（現時点未使用・組み込む予定のもの）
+				バッチ制御:Spring Batch
+				セキュリティ:Spring Security
+				ログ管理：logback(ほかにもあるかも)
+				
+	ミドルウェア：
+		アプリケーションサーバー：
+			Tomcat（現時点）
+		Webサーバー（現時点未使用）：
+			Appache or nginx
+		ライブラリ管理：
+			Maven
+		RDBMS：
+			MySQL（現時点）
+	
+	バージョン管理
+		git(リモートリポジトリにGitHubも用いている)
+	
+	UTツール
+		JUnit
+	CIツール（現時点未使用・これから組み込む）
+		Circle CI 、Jenkinsなど
+	
